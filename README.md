@@ -1,63 +1,71 @@
-# Pathfind Android App
+# PathFind Android
+ 
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.0-7F52FF?style=for-the-badge&logo=kotlin)](https://kotlinlang.org/)
+[![Jetpack Compose](https://img.shields.io/badge/Jetpack_Compose-Material_3-4285F4?style=for-the-badge&logo=jetpack-compose)](https://developer.android.com/jetpack/compose)
+[![Android](https://img.shields.io/badge/Android-Native-3DDC84?style=for-the-badge&logo=android)](https://www.android.com/)
 
-Android application for the Pathfind self-hosted bookmark manager. Built with modern Android development practices, this app allows you to seamlessly manage, search, and save your bookmarks on the go.
+A native Android companion app for [PathFind](https://github.com/dnlnm/pathfind). Built with modern Android development practices, this app allows you to seamlessly manage, search, and save your bookmarks on the go.
 
-## Features
+![PathFind Android Mockup](pathfind_android_mockup_1772558582648.png)
 
-- **Bookmark Management**: Create, read, update, and delete bookmarks directly from your device.
-- **Collections & Tags**: Organize and categorize your saved links.
-- **Native UI/UX**: Polished, platform-specific design leveraging Material 3 and built specifically for Android.
-- **Browse & Search**: Powerful native search functionalities and a dedicated Browse tab for discovery.
-- **Android Share Intent**: Instantly save links to your Pathfind instance directly from any Android application (browsers, news feeds, etc.) via the standard device share sheet.
-- **Self-Hosted Integration**: Easily point the app to your custom Pathfind Server URL and authenticate using your API Token.
+---
 
-## Tech Stack
+## 🌐 The PathFind Ecosystem
 
-- [Kotlin](https://kotlinlang.org/) - Primary language
-- [Jetpack Compose](https://developer.android.com/jetpack/compose) - Modern declarative Android UI toolkit
-- [Material 3](https://m3.material.io/) - Design system and foundational UI components
-- [Retrofit](https://square.github.io/retrofit/) - Type-safe HTTP client for backend REST API interactions
-- [Coil](https://coil-kt.github.io/coil/) - Image loading backed by Kotlin Coroutines
-- [AndroidX DataStore](https://developer.android.com/topic/libraries/architecture/datastore) - Asynchronous preference management for authentication and settings
+- **[PathFind Web](https://github.com/dnlnm/pathfind)**: The core self-hosted server and dashboard.
+- **[PathFind Extension](https://github.com/dnlnm/pathfind-ext)**: Browser extension for Chrome, Edge, and Firefox.
+- **[PathFind iOS](https://github.com/dnlnm/pathfind-ios)**: Native SwiftUI mobile app for iPhone.
+- **[PathFind Android](https://github.com/dnlnm/pathfind-kt)**: Native Kotlin & Compose mobile app.
 
-## Getting Started
+---
+
+## ✨ Features
+
+- **📱 Native Material 3 UI**: Polished, platform-specific design leveraging Material You dynamics.
+- **📥 Android Share Intent**: Instantly save links to your PathFind instance directly from any Android application via the standard share sheet.
+- **🔍 Global Search**: Powerful native search functionalities to find your bookmarks instantly.
+- **📁 Collections & Tags**: Full access to organize and categorize your saved links.
+- **🔒 Secure Authentication**: Easily connect to your self-hosted server using a personal API Token.
+
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
 
-- [Android Studio](https://developer.android.com/studio) (Latest recommended version)
-- Kotlin and Android SDKs configured in your environment
+- [Android Studio](https://developer.android.com/studio) (Latest Version)
 - Java 17+
+- A running [PathFind](https://github.com/dnlnm/pathfind) instance.
 
-### Installation & Setup
+### Installation
 
-1. Clone the repository and navigate to the android app directory:
+1. Clone the repository:
    ```bash
+   git clone https://github.com/dnlnm/pathfind-kt.git
    cd pathfind-kt
    ```
-2. Open the configured project in **Android Studio**.
-3. Wait for Gradle to sync and download all necessary dependencies automatically.
+2. Open the project in **Android Studio**.
+3. Wait for Gradle to sync.
 
-### Configuration
+### Connectivity
 
-Upon first launching the application, you'll be prompted to enter your Pathfind instance details:
-1. **Server URL**: The URL pointing to your self-hosted Pathfind application (e.g., `https://bookmarks.yourdomain.com`).
-2. **API Token**: A secure personal access token generated from your web server's settings panel.
+Upon first launch, you will need:
+1. **Server URL**: Your PathFind instance URL (e.g., `https://pathfind.yourdomain.com`).
+2. **API Token**: Generated from your PathFind Web settings.
 
-### Development
+---
 
-To build and run the debug application:
+## 🛠 Tech Stack
 
-- Connect a physical Android device with USB Debugging enabled, or launch an Android Virtual Device (AVD) using the built-in emulator.
-- Click the **Run** button (`Shift + 10`) in Android Studio.
+- **Language**: [Kotlin](https://kotlinlang.org/)
+- **UI Framework**: [Jetpack Compose](https://developer.android.com/jetpack/compose) with **Material 3**
+- **Networking**: [Retrofit](https://square.github.io/retrofit/)
+- **Image Loading**: [Coil](https://coil-kt.github.io/coil/)
+- **Data Persistence**: [AndroidX DataStore](https://developer.android.com/topic/libraries/architecture/datastore)
 
-Alternatively, you can build from the command line:
+---
 
-```bash
-# MacOS / Linux
-./gradlew assembleDebug
+## 📄 License
 
-# Windows
-gradlew.bat assembleDebug
-```
+MIT © [dnlnm](https://github.com/dnlnm)
 
-The resulting debug APK will be available under `app/build/outputs/apk/debug/app-debug.apk`.
