@@ -10,6 +10,8 @@ data class Bookmark(
     val thumbnail: String?,
     val isArchived: Boolean,
     val isReadLater: Boolean,
+    val isNsfw: Boolean = false,
+    val linkStatus: String? = null, // "ok", "broken", "timeout", null
     val createdAt: String,
     val updatedAt: String,
     val userId: String,
@@ -49,7 +51,8 @@ data class BookmarkCreateRequest(
     val notes: String? = null,
     val tags: List<String>? = null,
     val collections: List<String>? = null,
-    val isReadLater: Boolean? = null
+    val isReadLater: Boolean? = null,
+    val isNsfw: Boolean? = null
 )
 
 data class BookmarkUpdateRequest(
@@ -59,5 +62,6 @@ data class BookmarkUpdateRequest(
     val tags: List<String>? = null,
     val collections: List<String>? = null,
     val isArchived: Boolean? = null,
-    val isReadLater: Boolean? = null
+    val isReadLater: Boolean? = null,
+    val isNsfw: Boolean? = null
 )

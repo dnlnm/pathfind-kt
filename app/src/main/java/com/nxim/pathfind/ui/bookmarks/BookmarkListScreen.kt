@@ -13,10 +13,13 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.nxim.pathfind.data.model.Bookmark
 import com.nxim.pathfind.ui.main.BookmarkViewModel
 import kotlinx.coroutines.launch
+import android.content.Intent
+import android.net.Uri
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -25,6 +28,7 @@ fun BookmarkListScreen(
 ) {
     val uiState by viewModel.uiState.collectAsState()
     val listState = rememberLazyListState()
+    val context = LocalContext.current
 
     var showAddDialog by remember { mutableStateOf(false) }
     var selectedBookmark: Bookmark? by remember { mutableStateOf(null) }
@@ -95,7 +99,10 @@ fun BookmarkListScreen(
                         BookmarkCard(
                             bookmark = bookmark,
                             isCompact = !uiState.isCardView,
-                            onClick = { /* open URL in browser or in-app */ selectedBookmark = bookmark },
+                            onClick = {
+                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(bookmark.url))
+                                context.startActivity(intent)
+                            },
                             onLongClick = { selectedBookmark = bookmark }
                         )
 

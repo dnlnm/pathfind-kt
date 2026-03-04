@@ -1,5 +1,7 @@
 package com.nxim.pathfind.ui.search
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -10,6 +12,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.nxim.pathfind.data.model.Bookmark
 import com.nxim.pathfind.ui.bookmarks.BookmarkCard
@@ -24,6 +27,7 @@ fun SearchScreen(
 ) {
     val uiState by viewModel.uiState.collectAsState()
     val listState = rememberLazyListState()
+    val context = LocalContext.current
 
     var selectedBookmark: Bookmark? by remember { mutableStateOf(null) }
 
@@ -79,7 +83,10 @@ fun SearchScreen(
                         BookmarkCard(
                             bookmark = bookmark,
                             isCompact = true,
-                            onClick = { selectedBookmark = bookmark },
+                            onClick = {
+                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(bookmark.url))
+                                context.startActivity(intent)
+                            },
                             onLongClick = { selectedBookmark = bookmark }
                         )
 

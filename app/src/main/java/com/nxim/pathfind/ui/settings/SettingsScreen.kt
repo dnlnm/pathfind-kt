@@ -1,5 +1,6 @@
 package com.nxim.pathfind.ui.settings
 
+import android.os.Build
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -14,6 +15,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.nxim.pathfind.data.api.ApiClient
 
@@ -23,6 +25,20 @@ fun SettingsScreen(
     onDisconnect: () -> Unit
 ) {
     var showDisconnectConfirm by remember { mutableStateOf(false) }
+    val context = LocalContext.current
+    val appVersion = remember {
+        try {
+            val pInfo = context.packageManager.getPackageInfo(context.packageName, 0)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                "${pInfo.versionName} (${pInfo.longVersionCode})"
+            } else {
+                @Suppress("DEPRECATION")
+                "${pInfo.versionName} (${pInfo.versionCode})"
+            }
+        } catch (e: Exception) {
+            "Unknown"
+        }
+    }
 
     if (showDisconnectConfirm) {
         AlertDialog(
@@ -94,7 +110,7 @@ fun SettingsScreen(
 
                 ListItem(
                     headlineContent = { Text("App Version") },
-                    trailingContent = { Text("1.0.0") },
+                    trailingContent = { Text(appVersion) },
                     leadingContent = { Icon(Icons.Default.Info, contentDescription = null) }
                 )
             }
