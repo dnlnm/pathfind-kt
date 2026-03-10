@@ -174,16 +174,8 @@ fun BookmarkCard(
 }
 
 fun resolveThumbnailModel(thumbnail: String, serverUrl: String): Any {
-    if (thumbnail.startsWith("data:image", ignoreCase = true)) {
-        try {
-            val base64String = thumbnail.substringAfter("base64,")
-            return android.util.Base64.decode(base64String, android.util.Base64.DEFAULT)
-        } catch (e: Exception) {
-            return thumbnail
-        }
-    }
     if (thumbnail.startsWith("http", ignoreCase = true)) return thumbnail
-    
+
     val base = if (serverUrl.endsWith("/")) serverUrl.dropLast(1) else serverUrl
     val path = if (thumbnail.startsWith("/")) thumbnail else "/$thumbnail"
     return base + path
